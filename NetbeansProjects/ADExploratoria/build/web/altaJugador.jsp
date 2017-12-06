@@ -33,14 +33,14 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">Player</label>  
           <div class="col-md-4">
-          <input id="name" name="nombre" type="text" placeholder="First Name" class="form-control input-md" required> 
+          <input id="name" name="nombre" type="text" placeholder="First Name" class="form-control input-md" pattern=".{2,}" required title="2 characters minimum"> 
           </div>
         </div>
         
         <div class="form-group">
             <label class="col-md-4 control-label" for="name"></label>
           <div class="col-md-4">
-          <input id="name" name="apellidos" type="text" placeholder="Last Name" class="form-control input-md" required> 
+          <input id="name" name="apellidos" type="text" placeholder="Last Name" min="3" class="form-control input-md" pattern=".{3,}" required title="3 characters minimum"> 
           </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">Nationality</label>  
           <div class="col-md-4">
-          <input id="city" name="pais" type="text" placeholder="City" class="form-control input-md" required>
+          <input id="city" name="pais" type="text" placeholder="City" class="form-control input-md" pattern=".{3,}" required title="3 characters minimum">
     
           </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="number">Number</label>  
           <div class="col-md-4">
-          <input id="number" name="dorsal" type="number" placeholder="Number" min="0" max="99" class="form-control input-md" required>
+          <input id="number" name="dorsal" type="number" placeholder="Number" min="0" max="99" class="form-control input-md" required title="Introduce a number">
     
           </div>
         </div>
