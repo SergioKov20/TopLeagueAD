@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1184521
+ * @author User
  */
 @WebServlet(urlPatterns = {"/loginservlet"})
 public class loginservlet extends HttpServlet {
@@ -46,7 +46,7 @@ public class loginservlet extends HttpServlet {
           Class.forName("org.sqlite.JDBC");           
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:D:\\equipsjugadors.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
