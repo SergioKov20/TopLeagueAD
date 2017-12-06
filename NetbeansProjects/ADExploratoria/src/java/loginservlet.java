@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
@@ -15,13 +16,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 1184521
  */
-@WebServlet(urlPatterns = {"/creator"})
-public class creator extends HttpServlet {
+@WebServlet(urlPatterns = {"/loginservlet"})
+public class loginservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,35 +36,52 @@ public class creator extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
                        
         Connection connection = null;
         try                        
         {            
           // load the sqlite-JDBC driver using the current class loader
-          Class.forName("org.sqlite.JDBC");            
+          Class.forName("org.sqlite.JDBC");           
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:F:\\exemple.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
-            //Creem taules per defecte
-            statement.executeUpdate("drop table if exists usuarios");
-            statement.executeUpdate("drop table if exists jugadors");
-            statement.executeUpdate("drop table if exists equips");
+          int error = 1; //Error d'usuari
+          String user = request.getParameter("username");
+          String pass = request.getParameter("password");
+          
+          ResultSet rs = statement.executeQuery("select * from usuarios");
 
-            statement.executeUpdate("create table usuarios (id_usuario string primary key, password string)");
-            statement.executeUpdate("insert into usuarios values('Sergio','123')");
-            statement.executeUpdate("insert into usuarios values('Marc','123')");
-
-            statement.executeUpdate("create table jugadors (id_jugador integer primary key, nom string,cognom string, nacionalitat string, dorsal integer, posicio string, camabona string)");
-            statement.executeUpdate("insert into jugadors values(1, 'Sergio', 'Rodríguez','ESP', 20,'defensa','dreta')");
-            statement.executeUpdate("insert into jugadors values(2, 'Marc', 'Català','ESP', 17,'davanter','esquerra')");
-
-            statement.executeUpdate("create table equips (id_equip integer primary key, nom_equip string, abreviatura string, lliga string, numero integer, ciudad string,provincia string,pais string)");
-            statement.executeUpdate("insert into equips values(1, 'FIB Futbol Club', 'FIB', 'UPC League', 'Barcelona', 'Barcelona', 'Espanya')");
+          while(rs.next() && error == 1)
+          {
+            if(rs.getString("id_usuario").equals(user)) {
+                if(rs.getString("password").equals(pass)) {
+                    error = 0; //No hi ha errors
+                }
+                else {
+                    error = 2; //Error de contrasenya
+                }
+                
+            }
+          }
+          if(error == 0) {
+                     
+            //INICIO CODIGO SESSION
+            HttpSession ses = request.getSession();
+            ses.setAttribute("user", user);
+            //FIN CODIGO SESSION
+        
+            response.sendRedirect("menu.jsp");
+          }
+          else {
+              String e = String.valueOf(error);
+              request.getSession().setAttribute("error", e);
+              response.sendRedirect("error.jsp");
+          }
         }
         catch(SQLException e)
         {
@@ -83,7 +102,6 @@ public class creator extends HttpServlet {
             System.err.println(e.getMessage());
           }
         }
-        response.sendRedirect("login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

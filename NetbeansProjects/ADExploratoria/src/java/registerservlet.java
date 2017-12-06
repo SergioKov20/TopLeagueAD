@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 1184521
  */
-@WebServlet(urlPatterns = {"/creator"})
-public class creator extends HttpServlet {
+@WebServlet(urlPatterns = {"/registerservlet"})
+public class registerservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,28 +42,33 @@ public class creator extends HttpServlet {
         try                        
         {            
           // load the sqlite-JDBC driver using the current class loader
-          Class.forName("org.sqlite.JDBC");            
+          Class.forName("org.sqlite.JDBC");           
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:F:\\exemple.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
-            //Creem taules per defecte
-            statement.executeUpdate("drop table if exists usuarios");
-            statement.executeUpdate("drop table if exists jugadors");
-            statement.executeUpdate("drop table if exists equips");
+          int error = 0;
+          String user = request.getParameter("username");
+          String pass = request.getParameter("password");
+          
+          ResultSet rs = statement.executeQuery("select * from usuarios");
 
-            statement.executeUpdate("create table usuarios (id_usuario string primary key, password string)");
-            statement.executeUpdate("insert into usuarios values('Sergio','123')");
-            statement.executeUpdate("insert into usuarios values('Marc','123')");
-
-            statement.executeUpdate("create table jugadors (id_jugador integer primary key, nom string,cognom string, nacionalitat string, dorsal integer, posicio string, camabona string)");
-            statement.executeUpdate("insert into jugadors values(1, 'Sergio', 'Rodríguez','ESP', 20,'defensa','dreta')");
-            statement.executeUpdate("insert into jugadors values(2, 'Marc', 'Català','ESP', 17,'davanter','esquerra')");
-
-            statement.executeUpdate("create table equips (id_equip integer primary key, nom_equip string, abreviatura string, lliga string, numero integer, ciudad string,provincia string,pais string)");
-            statement.executeUpdate("insert into equips values(1, 'FIB Futbol Club', 'FIB', 'UPC League', 'Barcelona', 'Barcelona', 'Espanya')");
+          while(rs.next() && error == 0)
+          {
+            if(rs.getString("id_usuario").equals(user)) {
+                error = 3;
+            }           
+          }
+            if(error == 0) {
+                statement.executeUpdate("replace into usuarios values('"+user+"','"+pass+"')");
+                response.sendRedirect("login.jsp");
+            }
+            else {
+                request.getSession().setAttribute("error", "3");
+                response.sendRedirect("error.jsp");
+            }
         }
         catch(SQLException e)
         {
@@ -83,7 +89,6 @@ public class creator extends HttpServlet {
             System.err.println(e.getMessage());
           }
         }
-        response.sendRedirect("login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

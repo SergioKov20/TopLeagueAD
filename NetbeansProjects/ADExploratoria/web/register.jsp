@@ -3,19 +3,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TopLeague | Log in</title>
+        <title>TopLeague | Register</title>
     </head>
     <body>
-        <% session.invalidate(); %>
-         <form action="loginservlet">
+         <form action="registerservlet">
             <fieldset>
-              <legend>Please, Log In:</legend>
+              <legend>Welcome! Register here:</legend>
               Username:<br>
               <input type="text" name="username" required><br>
               Password:<br>
               <input type="password" name="password" required><br><br>
-              <button type="submit">Log In</button>
-              <a href="register.jsp">Click here to register.</a>
+              <button type="submit">Register</button>
             </fieldset>
           </form> 
     </body>

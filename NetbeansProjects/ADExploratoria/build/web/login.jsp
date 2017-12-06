@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 19-sep-2017, 16:11:32
-    Author     : 1184521
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +7,7 @@
     </head>
     <body>
         <% session.invalidate(); %>
-         <form action="/ADExploratoria/loginservlet">
+         <form action="loginservlet">
             <fieldset>
               <legend>Please, Log In:</legend>
               Username:<br>
@@ -21,7 +15,7 @@
               Password:<br>
               <input type="password" name="password" required><br><br>
               <button type="submit">Log In</button>
-              <a href="/register.jsp">Click here to register.</a>
+              <a href="register.jsp">Click here to register.</a>
             </fieldset>
           </form> 
     </body>
