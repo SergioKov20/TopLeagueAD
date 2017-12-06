@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
@@ -45,7 +44,7 @@ public class creator extends HttpServlet {
           Class.forName("org.sqlite.JDBC");            
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:F:\\exemple.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
@@ -84,7 +83,7 @@ public class creator extends HttpServlet {
             System.err.println(e.getMessage());
           }
         }
-        response.sendRedirect("/login.jsp");
+        response.sendRedirect("/ADExploratoria/login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

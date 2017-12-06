@@ -13,7 +13,7 @@
     </head>
     <body>
         <% session.invalidate(); %>
-         <form action="/loginservlet">
+         <form action="/ADExploratoria/loginservlet">
             <fieldset>
               <legend>Please, Log In:</legend>
               Username:<br>
