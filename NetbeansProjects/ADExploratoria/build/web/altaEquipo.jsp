@@ -1,6 +1,6 @@
 <%-- 
-    Document   : altaJugador
-    Created on : 06-dic-2017, 15:39:16
+    Document   : altaEquipo
+    Created on : 06-dic-2017, 18:19:54
     Author     : User
 --%>
 
@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>TopLeague | Register Player</title>
+        <title>TopLeague | Register Team</title>
     </head>
     <body>
         <% if (session.getAttribute("user") == null) { %>
@@ -23,28 +23,20 @@
             <% out.print("Logged in as: " + session.getAttribute("user") + '.'); %>
             <br><br>
                 <div>
-<form class="form-horizontal" action="altaJugador" method="post">
+<form class="form-horizontal" action="altaEquipo" method="post">
     <fieldset>
 
         <!-- Form Name -->
-        <legend style="text-align: center; font-size: 24px">Register Player</legend>
+        <legend style="text-align: center; font-size: 24px">Register Team</legend>
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Player</label>  
+          <label class="col-md-4 control-label" for="name">Team</label>  
           <div class="col-md-4">
           <input id="name" name="nombre" type="text" placeholder="First Name" class="form-control input-md" required> 
           </div>
         </div>
-        
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name"></label>
-          <div class="col-md-4">
-          <input id="name" name="apellidos" type="text" placeholder="Last Name" class="form-control input-md" required> 
-          </div>
-        </div>
-
-        
+             
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">Nationality</label>  
@@ -55,36 +47,12 @@
         </div>
 
         <div class="form-group">
-          <label class="col-md-4 control-label" for="number">Number</label>  
+          <label class="col-md-4 control-label" for="number">Number of players</label>  
           <div class="col-md-4">
-          <input id="number" name="dorsal" type="number" placeholder="Number" min="0" max="99" class="form-control input-md" required>
-    
+          <input id="number" name="num_jugadores" type="number" placeholder="Number" min="11" max="30" class="form-control input-md" required>   
           </div>
         </div>
         
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="posicion">Choose Position</label>
-          <div class="col-md-4">
-            <select id="selectbasic" name="Choose Position" class="form-control">
-		        <option value="gk">Goalkeeper</option>
-		        <option value="df">Defense</option>
-		        <option value="md">Midfielder</option>
-		        <option value="st">Striker</option>	
-            </select>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="Left/Right-footed">Left/Right-footed</label>
-          <div class="col-md-4">
-            <select id="selectbasic" name="piernabuena" class="form-control">
-		        <option value="rf">Right-footed</option>
-                        <option value="lf">Left-footed</option>		        
-                        <option value="both">Both</option>	
-            </select>
-          </div>
-        </div>
-
         <!-- Button (Double) -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="save"></label>
