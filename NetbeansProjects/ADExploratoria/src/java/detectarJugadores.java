@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -18,12 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
- * @author 1184521
+ * @author User
  */
-@WebServlet(urlPatterns = {"/loginservlet"})
-public class loginservlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/detectarVuelos"})
+public class detectarJugadores extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,38 +50,35 @@ public class loginservlet extends HttpServlet {
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
-          int error = 1; //Error d'usuari
-          String user = request.getParameter("username");
-          String pass = request.getParameter("password");
           
-          ResultSet rs = statement.executeQuery("select * from usuarios");
-
-          while(rs.next() && error == 1)
+          String company = "";
+          String from = "";
+          String to = "";
+          
+          ResultSet rs = statement.executeQuery("select distinct companyia from vuelos");
+          
+          while(rs.next())
           {
-            if(rs.getString("id_usuario").equals(user)) {
-                if(rs.getString("password").equals(pass)) {
-                    error = 0; //No hi ha errors
-                }
-                else {
-                    error = 2; //Error de contrasenya
-                }
-                
-            }
+              company += rs.getString("companyia") + '/';
           }
-          if(error == 0) {
-                     
-            //INICIO CODIGO SESSION
-            HttpSession ses = request.getSession();
-            ses.setAttribute("user", user);
-            //FIN CODIGO SESSION
-        
-            response.sendRedirect("menu.jsp");
+          
+          ResultSet rs2 = statement.executeQuery("select distinct origen from vuelos");
+          
+          while(rs2.next())
+          {
+              from += rs.getString("origen") + '/';
           }
-          else {
-              String e = String.valueOf(error);
-              request.getSession().setAttribute("error", e);
-              response.sendRedirect("error.jsp");
+          
+          ResultSet rs3 = statement.executeQuery("select distinct destino from vuelos");
+          
+          while(rs3.next())
+          {
+              to += rs.getString("destino") + '/';
           }
+          request.getSession().setAttribute("company", company);
+          request.getSession().setAttribute("origen", from);
+          request.getSession().setAttribute("destino", to);
+          response.sendRedirect("buscarVuelo.jsp");
         }
         catch(SQLException e)
         {
@@ -103,44 +100,13 @@ public class loginservlet extends HttpServlet {
           }
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, java.io.IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, java.io.IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

@@ -20,10 +20,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1184521
+ * @author Sergio
  */
-@WebServlet(urlPatterns = {"/loginservlet"})
-public class loginservlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/altaJugador"})
+public class altaJugador extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,38 +50,32 @@ public class loginservlet extends HttpServlet {
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
-          int error = 1; //Error d'usuari
-          String user = request.getParameter("username");
-          String pass = request.getParameter("password");
+          String nom = request.getParameter("nombre");
           
-          ResultSet rs = statement.executeQuery("select * from usuarios");
+          String ape = request.getParameter("apellidos");
+          
+          String pai = (request.getParameter("pais").substring(0,3)).toUpperCase();
+          
+          String dor = request.getParameter("dorsal");
+          
+          String pos = request.getParameter("posicion");
+          
+          String pb = request.getParameter("piernabuena");
+          
+          
+          int id = 1;
+           
+          ResultSet rs = statement.executeQuery("select * from jugadors");
 
-          while(rs.next() && error == 1)
+          while(rs.next())
           {
-            if(rs.getString("id_usuario").equals(user)) {
-                if(rs.getString("password").equals(pass)) {
-                    error = 0; //No hi ha errors
-                }
-                else {
-                    error = 2; //Error de contrasenya
-                }
-                
-            }
+            ++id;       
           }
-          if(error == 0) {
-                     
-            //INICIO CODIGO SESSION
-            HttpSession ses = request.getSession();
-            ses.setAttribute("user", user);
-            //FIN CODIGO SESSION
-        
-            response.sendRedirect("menu.jsp");
-          }
-          else {
-              String e = String.valueOf(error);
-              request.getSession().setAttribute("error", e);
-              response.sendRedirect("error.jsp");
-          }
+          
+          statement.executeUpdate("insert into jugadors values('"+id+"','"+nom+"','"+ape+"','"+pai+"','"+dor+"','"+pos+"','"+pb+"')");
+          
+          response.sendRedirect("menu.jsp");
+          
         }
         catch(SQLException e)
         {
