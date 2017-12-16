@@ -46,39 +46,40 @@ public class detectarJugadores extends HttpServlet {
           Class.forName("org.sqlite.JDBC");           
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:D:\\equipsjugadors.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
           
-          String company = "";
-          String from = "";
-          String to = "";
+          String cognom = "";
+          String nacionalitat = "";
+          String posicio = "";
           
-          ResultSet rs = statement.executeQuery("select distinct companyia from vuelos");
+          ResultSet rs = statement.executeQuery("select distinct cognom from jugadors");
           
           while(rs.next())
           {
-              company += rs.getString("companyia") + '/';
+              cognom += rs.getString("cognom") + '/';
           }
           
-          ResultSet rs2 = statement.executeQuery("select distinct origen from vuelos");
+          ResultSet rs2 = statement.executeQuery("select distinct nacionalitat from jugadors");
           
           while(rs2.next())
           {
-              from += rs.getString("origen") + '/';
+              nacionalitat += rs2.getString("nacionalitat") + '/';
           }
           
-          ResultSet rs3 = statement.executeQuery("select distinct destino from vuelos");
+          ResultSet rs4 = statement.executeQuery("select distinct posicio from jugadors");
           
-          while(rs3.next())
+          while(rs4.next())
           {
-              to += rs.getString("destino") + '/';
+              posicio += rs4.getString("posicio") + '/';
           }
-          request.getSession().setAttribute("company", company);
-          request.getSession().setAttribute("origen", from);
-          request.getSession().setAttribute("destino", to);
-          response.sendRedirect("buscarVuelo.jsp");
+          
+          request.getSession().setAttribute("cognom", cognom);
+          request.getSession().setAttribute("nacionalitat", nacionalitat);
+          request.getSession().setAttribute("posicio", posicio);
+          response.sendRedirect("buscarJugadores.jsp");
         }
         catch(SQLException e)
         {

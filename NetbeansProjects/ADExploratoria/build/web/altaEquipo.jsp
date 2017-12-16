@@ -31,25 +31,46 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Team</label>  
+          <label class="col-md-4 control-label" for="name">Team Name</label>  
           <div class="col-md-4">
-          <input id="name" name="nombre" type="text" placeholder="First Name" class="form-control input-md" required> 
+          <input id="name" name="teamname" type="text" placeholder="Team Name" class="form-control input-md" required> 
           </div>
         </div>
              
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="city">Nationality</label>  
+          <label class="col-md-4 control-label" for="city">Three-Letter Code</label>  
           <div class="col-md-4">
-          <input id="city" name="pais" type="text" placeholder="City" class="form-control input-md" required>
+          <input id="city" name="abreviatura" type="text" placeholder="(Example: FCB)" minlength="3" maxlength="3" class="form-control input-md" required>
+    
+          </div>
+        </div>
+        
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">League</label>  
+          <div class="col-md-4">
+          <input id="city" name="lliga" type="text" placeholder="League" class="form-control input-md" required>
     
           </div>
         </div>
 
+        <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="number">Number of players</label>  
+          <label class="col-md-4 control-label" for="city">City</label>  
           <div class="col-md-4">
-          <input id="number" name="num_jugadores" type="number" placeholder="Number" min="11" max="30" class="form-control input-md" required>   
+          <input id="city" name="ciutat" type="text" placeholder="City" class="form-control input-md" required>
+    
+          </div>
+        </div>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">Country</label>  
+          <div class="col-md-4">
+          <input id="city" name="pais" type="text" placeholder="Country" class="form-control input-md" required>
+    
           </div>
         </div>
         

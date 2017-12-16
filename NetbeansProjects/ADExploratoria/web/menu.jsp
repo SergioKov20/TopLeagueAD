@@ -38,9 +38,9 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="altaJugador.jsp">Register Player</a></li>
-                    <li><a href="detectarJugadores.jsp">Search Player</a></li>
+                    <li><a href="detectarJugadores">Search Player</a></li>
                     <li><a href="altaEquipo.jsp">Register Team</a></li>
-                    <li><a href="detectarEquipos.jsp">Search Team</a></li>
+                    <li><a href="detectarEquipos">Search Team</a></li>
                 </ul>
                 <h5><i class="glyphicon glyphicon-user"></i>
                     <small><b>USER</b></small>

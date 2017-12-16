@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sergio/Desktop/FIB/NetbeansProjects/ad_entrega_lab4/ADExploratoria/web/index.html</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/src/java/registerservlet.java</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/src/java/altaJugador.java</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/src/java/creator.java</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/web/login.jsp</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/src/java/loginservlet.java</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/web/menu.jsp</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/web/error.jsp</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/src/java/detectarJugadores.java</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/web/register.jsp</file>
+            <file>file:/C:/Users/Sergio/Desktop/FIB/AD/Exploratoria/NetbeansProjects/ADExploratoria/web/altaJugador.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -20,10 +20,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 1184521
+ * @author Sergio
  */
-@WebServlet(urlPatterns = {"/loginservlet"})
-public class loginservlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/altaEquipo"})
+public class altaEquipo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,38 +50,30 @@ public class loginservlet extends HttpServlet {
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
-          int error = 1; //Error d'usuari
-          String user = request.getParameter("username");
-          String pass = request.getParameter("password");
+          String nom = request.getParameter("teamname");
           
-          ResultSet rs = statement.executeQuery("select * from usuarios");
+          String abr = request.getParameter("abreviatura");
+          
+          String lig = request.getParameter("lliga");
+          
+          String ciu = request.getParameter("ciutat");
+          
+          String pai = request.getParameter("pais");
+          
+          
+          int id = 1;
+           
+          ResultSet rs = statement.executeQuery("select * from equips");
 
-          while(rs.next() && error == 1)
+          while(rs.next())
           {
-            if(rs.getString("id_usuario").equals(user)) {
-                if(rs.getString("password").equals(pass)) {
-                    error = 0; //No hi ha errors
-                }
-                else {
-                    error = 2; //Error de contrasenya
-                }
-                
-            }
+            ++id;       
           }
-          if(error == 0) {
-                     
-            //INICIO CODIGO SESSION
-            HttpSession ses = request.getSession();
-            ses.setAttribute("user", user);
-            //FIN CODIGO SESSION
-        
-            response.sendRedirect("menu.jsp");
-          }
-          else {
-              String e = String.valueOf(error);
-              request.getSession().setAttribute("error", e);
-              response.sendRedirect("error.jsp");
-          }
+          
+          statement.executeUpdate("insert into equips values('"+id+"','"+nom+"','"+abr+"','"+lig+"','"+ciu+"','"+pai+"')");
+          
+          response.sendRedirect("menu.jsp");
+          
         }
         catch(SQLException e)
         {

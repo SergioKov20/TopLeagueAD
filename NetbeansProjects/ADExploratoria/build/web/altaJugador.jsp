@@ -49,7 +49,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">Nationality</label>  
           <div class="col-md-4">
-          <input id="city" name="pais" type="text" placeholder="City" class="form-control input-md" pattern=".{3,}" required title="3 characters minimum">
+          <input id="city" name="pais" type="text" placeholder="Nationality" class="form-control input-md" pattern=".{3,}" required title="3 characters minimum">
     
           </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="number">Number</label>  
           <div class="col-md-4">
-          <input id="number" name="dorsal" type="number" placeholder="Number" min="0" max="99" class="form-control input-md" required title="Introduce a number">
+          <input id="number" name="dorsal" type="number" placeholder="Number" min="1" max="99" class="form-control input-md" required title="Introduce a number">
     
           </div>
         </div>
@@ -65,11 +65,11 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="posicion">Choose Position</label>
           <div class="col-md-4">
-            <select id="selectbasic" name="Choose Position" class="form-control">
-		        <option value="gk">Goalkeeper</option>
-		        <option value="df">Defense</option>
-		        <option value="md">Midfielder</option>
-		        <option value="st">Striker</option>	
+            <select id="selectbasic" name="posicion" class="form-control">
+		        <option value="goalkeeper">Goalkeeper</option>
+		        <option value="defender">Defense</option>
+		        <option value="midfielder">Midfielder</option>
+		        <option value="striker">Striker</option>	
             </select>
           </div>
         </div>
@@ -78,8 +78,8 @@
           <label class="col-md-4 control-label" for="Left/Right-footed">Left/Right-footed</label>
           <div class="col-md-4">
             <select id="selectbasic" name="piernabuena" class="form-control">
-		        <option value="rf">Right-footed</option>
-                        <option value="lf">Left-footed</option>		        
+		        <option value="right">Right-footed</option>
+                        <option value="left">Left-footed</option>		        
                         <option value="both">Both</option>	
             </select>
           </div>

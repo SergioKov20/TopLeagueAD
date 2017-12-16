@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author User
+ * @author 1184521
  */
 @WebServlet(urlPatterns = {"/creator"})
 public class creator extends HttpServlet {
@@ -44,7 +44,7 @@ public class creator extends HttpServlet {
           Class.forName("org.sqlite.JDBC");            
           
           // create a database connection
-          connection = DriverManager.getConnection("jdbc:sqlite:D:\\equipsjugadors.db");
+          connection = DriverManager.getConnection("jdbc:sqlite:F:\\equipsjugadors.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           
@@ -55,14 +55,14 @@ public class creator extends HttpServlet {
 
             statement.executeUpdate("create table usuarios (id_usuario string primary key, password string)");
             statement.executeUpdate("insert into usuarios values('Sergio','123')");
-            statement.executeUpdate("insert into usuarios values('marc','123')");
+            statement.executeUpdate("insert into usuarios values('Marc','123')");
 
             statement.executeUpdate("create table jugadors (id_jugador integer primary key, nom string,cognom string, nacionalitat string, dorsal integer, posicio string, camabona string)");
-            statement.executeUpdate("insert into jugadors values(1, 'Sergio', 'Rodríguez','ESP', 20,'defensa','dreta')");
-            statement.executeUpdate("insert into jugadors values(2, 'Marc', 'Català','ESP', 17,'davanter','esquerra')");
+            statement.executeUpdate("insert into jugadors values(1, 'Sergio', 'Rodriguez','ESP', 20,'defender','right')");
+            statement.executeUpdate("insert into jugadors values(2, 'Marc', 'Catala','ESP', 17,'striker','left')");
 
-            statement.executeUpdate("create table equips (id_equip integer primary key, nom_equip string, abreviatura string, lliga string, numero integer, ciudad string,provincia string,pais string)");
-            statement.executeUpdate("insert into equips values(1, 'FIB Futbol Club', 'FIB', 'UPC League', 'Barcelona', 'Barcelona', 'Espanya')");
+            statement.executeUpdate("create table equips (id_equip integer primary key, nom_equip string, abreviatura string, lliga string, ciudad string, pais string)");
+            statement.executeUpdate("insert into equips values(1, 'FIB Futbol Club', 'FIB', 'UPC League', 'Barcelona', 'Espanya')");
         }
         catch(SQLException e)
         {
@@ -85,7 +85,6 @@ public class creator extends HttpServlet {
         }
         response.sendRedirect("login.jsp");
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
