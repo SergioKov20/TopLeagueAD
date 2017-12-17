@@ -118,15 +118,28 @@ public class buscarEquipo extends HttpServlet {
             lista.add(dios);
         }
           
-          out.println("<table>");
+         
+          out.println("<meta charset=\"utf-8\">");
+          out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+          out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">");
+          out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>");
+          out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
+          out.println("<body>");
+     
+          out.println("<div class=\"container\">");
+          out.println("<div class=\"row\">");
+          out.println("<table class=\" table table-responsive table-striped table-bordered\">");        
+          out.println("<thead>");
           out.println("<tr>");
+
           
-          out.println("<th>--NOMBRE--</th>");
-          out.println("<th>--ABREVIATURA--</th>");
-          out.println("<th>--LIGA--</th>");
-          out.println("<th>--CIUDAD--</th>");
-          out.println("<th>--PAIS--</th>");
-          out.println("</tr>");
+          out.println("<th>NOMBRE</th>");
+          out.println("<th>ABREVIATURA</th>");
+          out.println("<th>LIGA</th>");
+          out.println("<th>CIUDAD</th>");
+          out.println("<th>PAIS</th>");
+           out.println("</thead>");
+          out.println("<tbody><br>");
           
           if(lista.isEmpty()) {
               out.println("</table><br>No hay ningún equipo disponible con esas características.<br>");
@@ -141,11 +154,15 @@ public class buscarEquipo extends HttpServlet {
               out.println("</tr>");
             }
           
+            out.println("</tbody>");
             out.println("</table>");
+            out.println("<div>");
+            out.println("<div>");
+            out.println("<body>");
           }
           
           out.println("<br><br>");
-          out.println("<a href=\"menu.jsp\">Continue</a>");
+          out.println("<button type=\"submit\" class=\"btn btn-default\" onclick=\"window.location.href='menu.jsp'\">Continue");
         }
         catch(SQLException e)
         {
